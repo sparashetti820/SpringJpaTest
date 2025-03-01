@@ -3,6 +3,7 @@ package com.springjpa.entities;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +14,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(name="emailId_unique",columnNames = {"emailId","mobileNumber"}))
 public class StudentEntity {
 
 	@Id
@@ -37,9 +41,14 @@ public class StudentEntity {
 	private String emailId;
 
 	private String mobileNumber;
+	
+	private String usn;
+	
+	@Embedded
+	private Guardian guardian;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "dept_id", referencedColumnName = "id")
+	@JoinColumn(name = "dept_id", referencedColumnName = "id",nullable = false)
 	private Department department;
 
 	@ManyToMany(cascade = CascadeType.ALL)

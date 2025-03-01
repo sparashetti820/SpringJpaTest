@@ -1,14 +1,12 @@
 package com.springjpa.entities;
 
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
@@ -37,5 +35,8 @@ public class Department {
 	//@OneToMany(cascade = CascadeType.ALL)
 	//@JoinColumn(name = "teacher_id",referencedColumnName = "id")
 	//private List<Teacher> teachers;
+	@ManyToOne
+	@JoinColumn(name = "college_id",referencedColumnName = "id",nullable = false)
+	private College college;
 
 }

@@ -44,7 +44,7 @@ public class HeadOfDepartment {
 	private String qualification;
 	
 	@OneToOne
-	@JoinColumn(name = "dept_id",referencedColumnName = "id")
+	@JoinColumn(name = "dept_id",referencedColumnName = "id",nullable = false)
 	private Department department;
 
 }
