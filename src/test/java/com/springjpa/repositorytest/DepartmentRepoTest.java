@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,7 +38,10 @@ public class DepartmentRepoTest {
 	@Test
 	public void getAllDepartments() {
 		List<Department> departments = departmentRepository.findAll();
-		departments.forEach(System.out::println);
+		departments.forEach(d->{
+			System.out.println(d);
+			System.out.println(d.getCollege());
+		});
 	}
 
 }

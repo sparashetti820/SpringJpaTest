@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
@@ -27,6 +28,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(name="emailId_unique",columnNames = {"emailId","mobileNumber"}))
+@ToString(exclude = "subjects")
 public class StudentEntity {
 
 	@Id
@@ -47,7 +49,7 @@ public class StudentEntity {
 	@Embedded
 	private Guardian guardian;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "dept_id", referencedColumnName = "id",nullable = false)
 	private Department department;
 
